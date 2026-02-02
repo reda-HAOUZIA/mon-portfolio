@@ -5,6 +5,14 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mon Portfolio - Reda HAOUZIA</title>
     <link rel="stylesheet" href="styles.css">
+    <!-- Google Fonts - Poppins -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Font Awesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- AOS - Animate On Scroll -->
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <!-- Three.js pour le fond 3D -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <script>
 function toggleProject(proj) {
@@ -26,21 +34,22 @@ function toggleProject(proj) {
                 <li><a href="#about">À propos</a></li>
                 <li><a href="#career">Projets pro</a></li>
                 <li><a href="#skills">Compétences</a></li>
-                <li><a href="#projects">projet</a></li>
-                
+                <li><a href="#projects">Projet</a></li>
             </ul>
         </nav>
     </header>
 
     <div class="hero">
-        <div class="hero-text">
-            <h1>Reda HAOUZIA</h1>
+        <!-- Canvas 3D pour le fond animé -->
+        <canvas id="hero-canvas"></canvas>
+        <div class="hero-text" data-aos="fade-up" data-aos-duration="1200">
+            <h1><span>Reda</span> HAOUZIA</h1>
             <p>Étudiant en Informatique</p>
         </div>
     </div>
 
     <section id="about" class="about-section">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
             <h2>À propos de moi</h2>
         </div>
         
@@ -54,14 +63,14 @@ function toggleProject(proj) {
             
             <!-- Colonne de droite avec le contenu -->
             <div class="info-column">
-                <article class="about-card">
-                    <h3>Présentation</h3>
+                <article class="about-card" data-aos="fade-up" data-aos-delay="100">
+                    <h3><i class="fas fa-user"></i> Présentation</h3>
                     <p>Actuellement en BUT Informatique, je suis un jeune étudiant souhaitant se spécialiser dans le développement web et mobile. J'oriente mes études dans ce domaine, guidé par mon désir d'apprendre et ma curiosité.</p>
                     <p>Le développement web et mobile est apparu comme une évidence lors de mes formations. Créer des applications toujours plus performantes est un enjeu actuel très important.</p>
                 </article>
                 
-                <article class="about-card">
-                    <h3>Pourquoi le BUT Informatique ?</h3>
+                <article class="about-card" data-aos="fade-up" data-aos-delay="200">
+                    <h3><i class="fas fa-graduation-cap"></i> Pourquoi le BUT Informatique ?</h3>
                     <ul>
                         <li>Passionné par l'informatique depuis plusieurs années</li>
                         <li>Désir de comprendre le fonctionnement des technologies</li>
@@ -69,8 +78,8 @@ function toggleProject(proj) {
                     </ul>
                 </article>
                 
-                <article class="about-card">
-                    <h3>Centres d'intérêt</h3>
+                <article class="about-card" data-aos="fade-up" data-aos-delay="300">
+                    <h3><i class="fas fa-heart"></i> Centres d'intérêt</h3>
                     <div class="interests-grid">
                         <div class="interest-item">
                             <span>🎮</span>
@@ -93,16 +102,15 @@ function toggleProject(proj) {
             </div>
         </div>
     </section>
+
     <section id="career" class="career-section">
         <div class="career-hero">
-            <div class="career-bg-blurred"></div> <!-- Nouvelle div pour le fond flouté -->
-            <div class="career-content"> 
-            <div class="career-overlay"></div>
+            <div class="career-bg-blurred"></div>
             <div class="career-content">
-                <h2>Projets Professionnels</h2>
+                <h2 data-aos="fade-up">Projets Professionnels</h2>
                 
                 <div class="career-timeline">
-                    <div class="timeline-item">
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="100">
                         <div class="timeline-header">
                             <h3>2024 - 2027</h3>
                             <div class="timeline-icon">🎓</div>
@@ -113,7 +121,7 @@ function toggleProject(proj) {
                         </div>
                     </div>
                     
-                    <div class="timeline-item">
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="200">
                         <div class="timeline-header">
                             <h3>2027 - 2030</h3>
                             <div class="timeline-icon">🏫</div>
@@ -129,7 +137,7 @@ function toggleProject(proj) {
                         </div>
                     </div>
                     
-                    <div class="timeline-item">
+                    <div class="timeline-item" data-aos="fade-right" data-aos-delay="300">
                         <div class="timeline-header">
                             <h3>2030+</h3>
                             <div class="timeline-icon">💼</div>
@@ -147,138 +155,375 @@ function toggleProject(proj) {
                 </div>
             </div>
         </div>
-    </div>
-        </div>
     </section>
+
     <section id="skills" class="skills-section">
-        <div class="section-header">
+        <div class="section-header" data-aos="fade-up">
             <h2>Mes Compétences</h2>
         </div>
     
         <div class="skills-container">
             <!-- Langages de programmation -->
-            <div class="skills-category">
-                <h3>Langages de Programmation</h3>
+            <div class="skills-category" data-aos="fade-up" data-aos-delay="100">
+                <h3><i class="fas fa-code"></i> Langages de Programmation</h3>
                 <div class="skills-grid">
                     <div class="skill-item">
                         <div class="skill-logo">
                             <img src="logos/cpp.png" alt="C++">
                         </div>
                         <div class="skill-name">C++</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-logo">
                             <img src="logos/python.png" alt="Python">
                         </div>
                         <div class="skill-name">Python</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-logo">
                             <img src="logos/bash.png" alt="Bash">
                         </div>
                         <div class="skill-name">Bash</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 60%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-logo">
                             <img src="logos/java.png" alt="java">
                         </div>
-                        <div class="skill-name">java</div>
+                        <div class="skill-name">Java</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
                     </div>
                 </div>
             </div>
     
             <!-- Développement Web -->
-            <div class="skills-category">
-                <h3>Développement Web</h3>
+            <div class="skills-category" data-aos="fade-up" data-aos-delay="200">
+                <h3><i class="fas fa-globe"></i> Développement Web</h3>
                 <div class="skills-grid">
                     <div class="skill-item">
                         <div class="skill-logo">
                             <img src="logos/html.png" alt="HTML">
                         </div>
                         <div class="skill-name">HTML</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 90%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-logo">
                             <img src="logos/css.png" alt="CSS">
                         </div>
                         <div class="skill-name">CSS</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 85%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-logo">
                             <img src="logos/JavaScript.png" alt="Java Script">
                         </div>
-                        <div class="skill-name">Java Script</div>
+                        <div class="skill-name">JavaScript</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
                     </div>
                 </div>
             </div>
     
             <!-- Bases de données -->
-            <div class="skills-category">
-                <h3>Bases de Données</h3>
+            <div class="skills-category" data-aos="fade-up" data-aos-delay="300">
+                <h3><i class="fas fa-database"></i> Bases de Données</h3>
                 <div class="skills-grid">
                     <div class="skill-item">
                         <div class="skill-logo">
                             <img src="logos/sql.png" alt="SQL">
                         </div>
                         <div class="skill-name">SQL</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 80%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-logo">
                             <img src="logos/postgresql.png" alt="PostgreSQL">
                         </div>
                         <div class="skill-name">PostgreSQL</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
                     </div>
                 </div>
             </div>
     
             <!-- Outils et Frameworks -->
-            <div class="skills-category">
-                <h3>Outils et Frameworks</h3>
+            <div class="skills-category" data-aos="fade-up" data-aos-delay="400">
+                <h3><i class="fas fa-tools"></i> Outils et Frameworks</h3>
                 <div class="skills-grid">
                     <div class="skill-item">
                         <div class="skill-logo">
                             <img src="logos/qt.png" alt="Qt Creator">
                         </div>
                         <div class="skill-name">Qt Creator</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 70%"></div></div>
                     </div>
                     <div class="skill-item">
                         <div class="skill-logo">
                             <img src="logos/git.png" alt="Git">
                         </div>
                         <div class="skill-name">Git</div>
+                        <div class="skill-bar"><div class="skill-progress" style="width: 75%"></div></div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-   <section id="projects" class="projects-section">
-    <div class="projects-hero">
-        <div class="projects-bg-blurred"></div>
-        <div class="projects-content">
-            <h2>Mes Projets</h2>
-            <div class="big-projects-grid">
-                <div class="big-project-card" onclick="toggleProject('agenda')">
-                    <h3>catalogue</h3>
+    <section id="projects" class="projects-section">
+        <div class="projects-hero">
+            <div class="projects-bg-blurred"></div>
+            <div class="projects-content">
+                <h2 data-aos="fade-up">Mes Projets</h2>
+                <div class="big-projects-grid">
+                    <div class="big-project-card" onclick="toggleProject('agenda')" data-aos="zoom-in" data-aos-delay="100">
+                        <h3><i class="fas fa-plane"></i> Catalogue</h3>
+                    </div>
+                    <div class="big-project-card" onclick="toggleProject('polynome')" data-aos="zoom-in" data-aos-delay="200">
+                        <h3><i class="fas fa-map-marker-alt"></i> GPS</h3>
+                    </div>
                 </div>
-                <div class="big-project-card" onclick="toggleProject('polynome')">
+                <div id="agenda-desc" class="project-description" style="display:none;">
+                    <h3>Application de gestion d'un catalogue d'avions</h3>
+                    <p>Ce projet consiste à développer une application en C++ avec Qt permettant de gérer une base de données d'avions. L'application offre une interface graphique moderne et réactive facilitant la gestion complète des informations relatives aux avions, telles que le lieu de création, les dates de production ou encore les images associées. Grâce à l'intégration de Qt SQL (avec une base de données SQLite), l'utilisateur peut ajouter, modifier, supprimer et rechercher des enregistrements en toute simplicité. Une attention particulière est portée à la gestion des erreurs de saisie, garantissant la fiabilité et la cohérence des données enregistrées. L'application met ainsi en œuvre les principes de la programmation orientée objet et de la conception d'interfaces intuitives avec Qt, tout en assurant une expérience fluide et professionnelle.</p>
+                </div>
+                <div id="polynome-desc" class="project-description" style="display:none;">
                     <h3>GPS</h3>
+                    <p>Ce projet consiste à concevoir une application GPS en C++/Qt, à la fois responsive et réactive, capable de calculer les itinéraires optimaux entre différentes villes. L'application repose sur l'algorithme de Dijkstra pour déterminer le chemin le plus rapide et les escales intermédiaires en fonction des distances ou des temps de trajet. Une base de données contenant les informations sur les villes et un tableau de temps est utilisée pour stocker et exploiter les données nécessaires aux calculs. L'interface graphique, développée avec Qt, permet d'afficher la carte, les connexions entre les villes et le trajet calculé en temps réel. Le projet met en avant la maîtrise de la programmation orientée objet, de la gestion des bases de données et de la visualisation dynamique des trajets, tout en garantissant une expérience utilisateur fluide et interactive.</p>
                 </div>
-            </div>
-            <div id="agenda-desc" class="project-description" style="display:none;">
-                <h3>Application de gestion d’un catalogue d’avions</h3>
-                <p>Ce projet consiste à développer une application en C++ avec Qt permettant de gérer une base de données d’avions. L’application offre une interface graphique moderne et réactive facilitant la gestion complète des informations relatives aux avions, telles que le lieu de création, les dates de production ou encore les images associées. Grâce à l’intégration de Qt SQL (avec une base de données SQLite), l’utilisateur peut ajouter, modifier, supprimer et rechercher des enregistrements en toute simplicité. Une attention particulière est portée à la gestion des erreurs de saisie, garantissant la fiabilité et la cohérence des données enregistrées. L’application met ainsi en œuvre les principes de la programmation orientée objet et de la conception d’interfaces intuitives avec Qt, tout en assurant une expérience fluide et professionnellep>
-            </div>
-            <div id="polynome-desc" class="project-description" style="display:none;">
-                <h3>GPS</h3>
-                <p>Ce projet consiste à concevoir une application GPS en C++/Qt, à la fois responsive et réactive, capable de calculer les itinéraires optimaux entre différentes villes. L’application repose sur l’algorithme de Dijkstra pour déterminer le chemin le plus rapide et les escales intermédiaires en fonction des distances ou des temps de trajet. Une base de données contenant les informations sur les villes et un tableau de temps est utilisée pour stocker et exploiter les données nécessaires aux calculs. L’interface graphique, développée avec Qt, permet d’afficher la carte, les connexions entre les villes et le trajet calculé en temps réel. Le projet met en avant la maîtrise de la programmation orientée objet, de la gestion des bases de données et de la visualisation dynamique des trajets, tout en garantissant une expérience utilisateur fluide et interactive.</p>     
             </div>
         </div>
-    </div>
-</section>
+    </section>
+
+    <!-- Scroll to Top Button -->
+    <button class="scroll-top" id="scrollTop" aria-label="Retour en haut">
+        <i class="fas fa-arrow-up"></i>
+    </button>
 
     <footer class="site-footer">
-        <p>Contactez-moi à <a href="redahaouzia30@gmail.com">redahaouzia30@gmail.com</a></p>
+        <p><i class="fas fa-envelope"></i> Contactez-moi à <a href="mailto:redahaouzia30@gmail.com">redahaouzia30@gmail.com</a></p>
     </footer>
+
+    <!-- AOS Init + Scroll Top Script + 3D Background -->
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            once: true,
+            easing: 'ease-out-cubic'
+        });
+
+        // Scroll to Top Button
+        const scrollTopBtn = document.getElementById('scrollTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTopBtn.classList.add('visible');
+            } else {
+                scrollTopBtn.classList.remove('visible');
+            }
+        });
+
+        scrollTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+
+        // Animate skill bars on scroll
+        const skillBars = document.querySelectorAll('.skill-progress');
+        const animateSkillBars = () => {
+            skillBars.forEach(bar => {
+                const rect = bar.getBoundingClientRect();
+                if (rect.top < window.innerHeight - 50) {
+                    bar.style.width = bar.style.width;
+                }
+            });
+        };
+        window.addEventListener('scroll', animateSkillBars);
+
+        // ===== THREE.JS 3D ANIMATED BACKGROUND =====
+        (function() {
+            const canvas = document.getElementById('hero-canvas');
+            if (!canvas) return;
+
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+            const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+            
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+
+            // Particules
+            const particlesGeometry = new THREE.BufferGeometry();
+            const particlesCount = 2000;
+            const posArray = new Float32Array(particlesCount * 3);
+            const colorsArray = new Float32Array(particlesCount * 3);
+
+            for (let i = 0; i < particlesCount * 3; i += 3) {
+                // Position
+                posArray[i] = (Math.random() - 0.5) * 15;
+                posArray[i + 1] = (Math.random() - 0.5) * 15;
+                posArray[i + 2] = (Math.random() - 0.5) * 15;
+                
+                // Couleurs orange variées
+                const orangeIntensity = Math.random();
+                colorsArray[i] = 1.0; // R
+                colorsArray[i + 1] = 0.4 + orangeIntensity * 0.3; // G
+                colorsArray[i + 2] = orangeIntensity * 0.2; // B
+            }
+
+            particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
+            particlesGeometry.setAttribute('color', new THREE.BufferAttribute(colorsArray, 3));
+
+            const particlesMaterial = new THREE.PointsMaterial({
+                size: 0.02,
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.8,
+                blending: THREE.AdditiveBlending
+            });
+
+            const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+            scene.add(particlesMesh);
+
+            // Lignes connectées (réseau)
+            const linesGeometry = new THREE.BufferGeometry();
+            const linesCount = 150;
+            const linesPositions = new Float32Array(linesCount * 6);
+            const linesColors = new Float32Array(linesCount * 6);
+
+            for (let i = 0; i < linesCount * 6; i += 6) {
+                const x1 = (Math.random() - 0.5) * 12;
+                const y1 = (Math.random() - 0.5) * 12;
+                const z1 = (Math.random() - 0.5) * 12;
+                const x2 = x1 + (Math.random() - 0.5) * 3;
+                const y2 = y1 + (Math.random() - 0.5) * 3;
+                const z2 = z1 + (Math.random() - 0.5) * 3;
+
+                linesPositions[i] = x1;
+                linesPositions[i + 1] = y1;
+                linesPositions[i + 2] = z1;
+                linesPositions[i + 3] = x2;
+                linesPositions[i + 4] = y2;
+                linesPositions[i + 5] = z2;
+
+                // Couleur orange avec dégradé
+                linesColors[i] = 1.0;
+                linesColors[i + 1] = 0.4;
+                linesColors[i + 2] = 0.0;
+                linesColors[i + 3] = 1.0;
+                linesColors[i + 4] = 0.6;
+                linesColors[i + 5] = 0.2;
+            }
+
+            linesGeometry.setAttribute('position', new THREE.BufferAttribute(linesPositions, 3));
+            linesGeometry.setAttribute('color', new THREE.BufferAttribute(linesColors, 3));
+
+            const linesMaterial = new THREE.LineBasicMaterial({
+                vertexColors: true,
+                transparent: true,
+                opacity: 0.3,
+                blending: THREE.AdditiveBlending
+            });
+
+            const linesMesh = new THREE.LineSegments(linesGeometry, linesMaterial);
+            scene.add(linesMesh);
+
+            // Torus (anneau 3D)
+            const torusGeometry = new THREE.TorusGeometry(3, 0.02, 16, 100);
+            const torusMaterial = new THREE.MeshBasicMaterial({ 
+                color: 0xff6600,
+                transparent: true,
+                opacity: 0.4
+            });
+            const torus = new THREE.Mesh(torusGeometry, torusMaterial);
+            scene.add(torus);
+
+            // Deuxième torus
+            const torus2Geometry = new THREE.TorusGeometry(4, 0.015, 16, 100);
+            const torus2Material = new THREE.MeshBasicMaterial({ 
+                color: 0xff8533,
+                transparent: true,
+                opacity: 0.25
+            });
+            const torus2 = new THREE.Mesh(torus2Geometry, torus2Material);
+            torus2.rotation.x = Math.PI / 2;
+            scene.add(torus2);
+
+            // Troisième torus
+            const torus3Geometry = new THREE.TorusGeometry(5, 0.01, 16, 100);
+            const torus3Material = new THREE.MeshBasicMaterial({ 
+                color: 0xffaa00,
+                transparent: true,
+                opacity: 0.15
+            });
+            const torus3 = new THREE.Mesh(torus3Geometry, torus3Material);
+            torus3.rotation.y = Math.PI / 3;
+            scene.add(torus3);
+
+            camera.position.z = 6;
+
+            // Mouse interaction
+            let mouseX = 0;
+            let mouseY = 0;
+            let targetX = 0;
+            let targetY = 0;
+
+            document.addEventListener('mousemove', (event) => {
+                mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+                mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+            });
+
+            // Animation
+            const clock = new THREE.Clock();
+
+            function animate() {
+                requestAnimationFrame(animate);
+                const elapsedTime = clock.getElapsedTime();
+
+                // Rotation douce des particules
+                particlesMesh.rotation.y = elapsedTime * 0.05;
+                particlesMesh.rotation.x = elapsedTime * 0.03;
+
+                // Rotation des lignes
+                linesMesh.rotation.y = -elapsedTime * 0.03;
+                linesMesh.rotation.z = elapsedTime * 0.02;
+
+                // Rotation des torus
+                torus.rotation.x = elapsedTime * 0.2;
+                torus.rotation.y = elapsedTime * 0.3;
+                
+                torus2.rotation.x = Math.PI / 2 + elapsedTime * 0.15;
+                torus2.rotation.z = elapsedTime * 0.25;
+                
+                torus3.rotation.y = Math.PI / 3 + elapsedTime * 0.1;
+                torus3.rotation.x = elapsedTime * 0.12;
+
+                // Effet parallax avec la souris
+                targetX += (mouseX - targetX) * 0.05;
+                targetY += (mouseY - targetY) * 0.05;
+
+                particlesMesh.rotation.y += targetX * 0.01;
+                particlesMesh.rotation.x += targetY * 0.01;
+
+                camera.position.x += (targetX * 0.5 - camera.position.x) * 0.05;
+                camera.position.y += (targetY * 0.5 - camera.position.y) * 0.05;
+
+                renderer.render(scene, camera);
+            }
+
+            animate();
+
+            // Resize
+            window.addEventListener('resize', () => {
+                camera.aspect = window.innerWidth / window.innerHeight;
+                camera.updateProjectionMatrix();
+                renderer.setSize(window.innerWidth, window.innerHeight);
+            });
+        })();
+    </script>
 </body>
 </html>
