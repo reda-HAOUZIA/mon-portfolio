@@ -49,57 +49,101 @@ function toggleProject(proj) {
     </div>
 
     <section id="about" class="about-section">
-        <div class="section-header" data-aos="fade-up">
-            <h2>À propos de moi</h2>
-        </div>
-        
-        <div class="about-content">
-            <!-- Colonne de gauche avec la photo -->
-            <div class="photo-column">
-                <div class="profile-photo">
-                    <img src="aha.jpg" alt="Reda HAOUZIA">
+        <!-- Hero About Section -->
+        <div class="about-hero">
+            <div class="about-hero-left" data-aos="fade-right" data-aos-duration="1000">
+                <div class="profile-photo-container">
+                    <div class="profile-photo">
+                        <img src="aha.jpg" alt="Reda HAOUZIA">
+                    </div>
+                    <!-- Floating Stats -->
+                    <div class="floating-stat stat-1">
+                        <span class="stat-number">1+</span>
+                        <span class="stat-label">Année BUT</span>
+                    </div>
+                    <div class="floating-stat stat-2">
+                        <span class="stat-number">10+</span>
+                        <span class="stat-label">Projets</span>
+                    </div>
+                    <div class="floating-stat stat-3">
+                        <span class="stat-number">5+</span>
+                        <span class="stat-label">Langages</span>
+                    </div>
                 </div>
             </div>
             
-            <!-- Colonne de droite avec le contenu -->
-            <div class="info-column">
-                <article class="about-card" data-aos="fade-up" data-aos-delay="100">
-                    <h3><i class="fas fa-user"></i> Présentation</h3>
-                    <p>Actuellement en BUT Informatique, je suis un jeune étudiant souhaitant se spécialiser dans le développement web et mobile. J'oriente mes études dans ce domaine, guidé par mon désir d'apprendre et ma curiosité.</p>
-                    <p>Le développement web et mobile est apparu comme une évidence lors de mes formations. Créer des applications toujours plus performantes est un enjeu actuel très important.</p>
-                </article>
-                
-                <article class="about-card" data-aos="fade-up" data-aos-delay="200">
-                    <h3><i class="fas fa-graduation-cap"></i> Pourquoi le BUT Informatique ?</h3>
-                    <ul>
-                        <li>Passionné par l'informatique depuis plusieurs années</li>
-                        <li>Désir de comprendre le fonctionnement des technologies</li>
-                        <li>Formation polyvalente avec une bonne insertion professionnelle</li>
-                    </ul>
-                </article>
-                
-                <article class="about-card" data-aos="fade-up" data-aos-delay="300">
-                    <h3><i class="fas fa-heart"></i> Centres d'intérêt</h3>
-                    <div class="interests-grid">
-                        <div class="interest-item">
-                            <span>🎮</span>
-                            <p>Jeux vidéo</p>
-                        </div>
-                        <div class="interest-item">
-                            <span>💻</span>
-                            <p>Programmation</p>
-                        </div>
-                        <div class="interest-item">
-                            <span>👕</span>
-                            <p>Mode</p>
-                        </div>
-                        <div class="interest-item">
-                            <span>📚</span>
-                            <p>Lecture</p>
-                        </div>
-                    </div>
-                </article>
+            <div class="about-hero-right" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="about-intro-tag">
+                    <i class="fas fa-code"></i>
+                    <span>Développeur en devenir</span>
+                </div>
+                <h2>Salut, je suis <span class="highlight">Reda</span> 👋</h2>
+                <p class="about-intro-text">
+                    Passionné par l'informatique et le développement, je suis actuellement en <strong>BUT Informatique</strong> avec l'ambition de me spécialiser dans le <strong>développement web et mobile</strong>. Curieux et motivé, je cherche constamment à apprendre de nouvelles technologies et à créer des solutions innovantes.
+                </p>
+                <div class="about-cta">
+                    <a href="mailto:redahaouzia30@gmail.com" class="btn-primary">
+                        <i class="fas fa-envelope"></i>
+                        Me contacter
+                    </a>
+                    <a href="#projects" class="btn-secondary">
+                        <i class="fas fa-folder-open"></i>
+                        Voir mes projets
+                    </a>
+                </div>
             </div>
+        </div>
+
+        <!-- About Content Grid -->
+        <div class="about-content-grid">
+            <!-- Card 1 - Parcours -->
+            <article class="about-card-modern" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-icon">
+                    <i class="fas fa-graduation-cap"></i>
+                </div>
+                <h3>Mon Parcours</h3>
+                <p>Étudiant en BUT Informatique, je construis des bases solides en programmation, bases de données et développement web pour devenir un développeur complet et polyvalent.</p>
+            </article>
+            
+            <!-- Card 2 - Pourquoi l'informatique -->
+            <article class="about-card-modern" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-icon">
+                    <i class="fas fa-lightbulb"></i>
+                </div>
+                <h3>Pourquoi l'Informatique ?</h3>
+                <ul>
+                    <li><i class="fas fa-check"></i> Passion depuis plusieurs années</li>
+                    <li><i class="fas fa-check"></i> Comprendre les technologies</li>
+                    <li><i class="fas fa-check"></i> Créer des solutions innovantes</li>
+                    <li><i class="fas fa-check"></i> Secteur en constante évolution</li>
+                </ul>
+            </article>
+            
+            <!-- Card 3 - Centres d'intérêt -->
+            <article class="about-card-modern interests-card" data-aos="fade-up" data-aos-delay="300">
+                <div class="card-icon">
+                    <i class="fas fa-heart"></i>
+                </div>
+                <h3>Centres d'intérêt</h3>
+                <div class="interests-modern-grid">
+                    <div class="interest-modern-item">
+                        <span class="interest-icon">🎮</span>
+                        <span>Jeux vidéo</span>
+                    </div>
+                    <div class="interest-modern-item">
+                        <span class="interest-icon">💻</span>
+                        <span>Programmation</span>
+                    </div>
+                    <div class="interest-modern-item">
+                        <span class="interest-icon">👕</span>
+                        <span>Mode</span>
+                    </div>
+                    <div class="interest-modern-item">
+                        <span class="interest-icon">📚</span>
+                        <span>Lecture</span>
+                    </div>
+                </div>
+            </article>
         </div>
     </section>
 
@@ -527,3 +571,4 @@ function toggleProject(proj) {
     </script>
 </body>
 </html>
+
