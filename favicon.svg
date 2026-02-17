@@ -1,0 +1,15 @@
+<!-- filepath: c:\mon-portfolio-main\favicon.svg -->
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="12" fill="#0a0a0a"/>
+  <text x="6" y="46" font-family="Arial Black, sans-serif" font-weight="900" font-size="36" fill="#ffffff">R</text>
+  <circle cx="38" cy="42" r="4" fill="#ff6600"/>
+  <text x="40" y="46" font-family="Arial Black, sans-serif" font-weight="900" font-size="36" fill="#ffffff">H</text>
+  <rect x="0" y="0" width="64" height="3" rx="1" fill="url(#g)"/>
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="64" y2="0">
+      <stop offset="0%" stop-color="#ff6600"/>
+      <stop offset="50%" stop-color="#ff8533"/>
+      <stop offset="100%" stop-color="#ffaa00"/>
+    </linearGradient>
+  </defs>
+</svg>
