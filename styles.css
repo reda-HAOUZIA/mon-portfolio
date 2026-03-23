@@ -605,17 +605,16 @@ ul {
 .career-section {
     position: relative;
     color: #fff;
-}
-
-.career-hero {
-    position: relative;
-    min-height: 100vh;
     overflow: hidden;
 }
 
-.career-bg-blurred {
+.career-section::before {
+    content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: url('fond-pro.jpg');
     background-size: cover;
     background-position: center;
@@ -624,11 +623,24 @@ ul {
     z-index: 1;
 }
 
-.career-bg-blurred::after {
+.career-section::after {
     content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(26, 26, 26, 0.8));
+    z-index: 1;
+}
+
+.career-hero {
+    position: relative;
+    z-index: 2;
+}
+
+.career-bg-blurred {
+    display: none;
 }
 
 .career-content {
@@ -1073,17 +1085,16 @@ ul {
 .projects-section {
     position: relative;
     color: #fff;
-}
-
-.projects-hero {
-    position: relative;
-    min-height: 100vh;
     overflow: hidden;
 }
 
-.projects-bg-blurred {
+.projects-section::before {
+    content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background-image: url('projet.jpg');
     background-size: cover;
     background-position: center;
@@ -1091,11 +1102,24 @@ ul {
     z-index: 1;
 }
 
-.projects-bg-blurred::after {
+.projects-section::after {
     content: '';
     position: absolute;
-    top: 0; left: 0; width: 100%; height: 100%;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     background: linear-gradient(135deg, rgba(0, 0, 0, 0.95), rgba(26, 26, 26, 0.9));
+    z-index: 1;
+}
+
+.projects-hero {
+    position: relative;
+    z-index: 2;
+}
+
+.projects-bg-blurred {
+    display: none;
 }
 
 .projects-content {
@@ -1149,6 +1173,7 @@ ul {
     cursor: pointer;
     transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
+    min-height: 460px;
 }
 
 .project-lib-card:hover {
@@ -1159,7 +1184,7 @@ ul {
 
 .project-lib-image {
     position: relative;
-    height: 220px;
+    height: 260px;
     overflow: hidden;
 }
 
@@ -1265,9 +1290,9 @@ ul {
     background: linear-gradient(145deg, #1a1a1a, #111111);
     border: 1px solid var(--border-subtle);
     border-radius: 20px;
-    max-width: 800px;
+    max-width: 1050px;
     width: 100%;
-    max-height: 90vh;
+    max-height: 92vh;
     overflow-y: auto;
     position: relative;
     transform: scale(0.9) translateY(30px);
@@ -1305,15 +1330,165 @@ ul {
 
 .modal-image {
     width: 100%;
-    height: 300px;
+    height: 430px;
     overflow: hidden;
     border-radius: 20px 20px 0 0;
+    position: relative;
+    background: #000;
 }
 
 .modal-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    cursor: zoom-in;
+}
+
+.modal-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(10, 10, 10, 0.55);
+    color: #fff;
+    cursor: pointer;
+    z-index: 4;
+    transition: all 0.25s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-carousel-btn.prev {
+    left: 16px;
+}
+
+.modal-carousel-btn.next {
+    right: 16px;
+}
+
+.modal-carousel-btn:hover {
+    background: rgba(255, 102, 0, 0.9);
+    border-color: rgba(255, 102, 0, 1);
+    transform: translateY(-50%) scale(1.06);
+}
+
+.modal-carousel-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 16px;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    z-index: 4;
+}
+
+.carousel-dot {
+    width: 10px;
+    height: 10px;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.5);
+    cursor: pointer;
+    transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.carousel-dot.active {
+    background: var(--accent-primary);
+    transform: scale(1.18);
+}
+
+.project-modal.single-image .modal-carousel-btn,
+.project-modal.single-image .modal-carousel-dots {
+    display: none;
+}
+
+.image-lightbox {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.92);
+    backdrop-filter: blur(6px);
+    z-index: 12000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.25s ease, visibility 0.25s ease;
+    padding: 30px;
+}
+
+.image-lightbox.active {
+    opacity: 1;
+    visibility: visible;
+}
+
+.image-lightbox img {
+    max-width: min(1400px, 92vw);
+    max-height: 90vh;
+    width: auto;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 22px 80px rgba(0, 0, 0, 0.65);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.lightbox-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    background: rgba(10, 10, 10, 0.62);
+    color: #fff;
+    cursor: pointer;
+    z-index: 2;
+    transition: all 0.2s ease;
+}
+
+.lightbox-nav.prev {
+    left: 22px;
+}
+
+.lightbox-nav.next {
+    right: 22px;
+}
+
+.lightbox-nav:hover {
+    background: rgba(255, 102, 0, 0.95);
+    border-color: rgba(255, 102, 0, 1);
+    transform: translateY(-50%) scale(1.05);
+}
+
+.lightbox-close {
+    position: absolute;
+    top: 18px;
+    right: 18px;
+    width: 46px;
+    height: 46px;
+    border-radius: 50%;
+    border: 1px solid rgba(255, 255, 255, 0.3);
+    background: rgba(10, 10, 10, 0.6);
+    color: #fff;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.lightbox-close:hover {
+    background: rgba(255, 102, 0, 0.95);
+    border-color: rgba(255, 102, 0, 1);
+    transform: scale(1.05);
+}
+
+.image-lightbox.single-image .lightbox-nav {
+    display: none;
 }
 
 .modal-body {
@@ -1699,6 +1874,14 @@ a:focus, button:focus { outline: 2px solid var(--accent-primary); outline-offset
     }
     
     .projects-library { grid-template-columns: 1fr; max-width: 450px; }
+
+    .project-modal {
+        max-width: 92vw;
+    }
+
+    .modal-image {
+        height: 330px;
+    }
 }
 
 @media (max-width: 768px) {
@@ -1728,7 +1911,35 @@ a:focus, button:focus { outline: 2px solid var(--accent-primary); outline-offset
     
     .project-modal-overlay { padding: 20px; }
     .modal-body { padding: 25px 20px 30px; }
-    .modal-image { height: 200px; }
+    .modal-image { height: 240px; }
+    .modal-carousel-btn {
+        width: 38px;
+        height: 38px;
+    }
+
+    .image-lightbox {
+        padding: 16px;
+    }
+
+    .lightbox-close {
+        top: 10px;
+        right: 10px;
+        width: 40px;
+        height: 40px;
+    }
+
+    .lightbox-nav {
+        width: 42px;
+        height: 42px;
+    }
+
+    .lightbox-nav.prev {
+        left: 10px;
+    }
+
+    .lightbox-nav.next {
+        right: 10px;
+    }
     
     .cv-download-btn { width: 100%; max-width: 300px; }
 }
