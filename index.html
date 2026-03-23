@@ -397,6 +397,26 @@
                             <p>Site web interactif de catalogue de films et séries avec recherche, détail et tri des contenus.</p>
                         </div>
                     </div>
+
+                    <!-- Project Card 4 -->
+                    <div class="project-lib-card" onclick="openProjectModal('dactylographie')">
+                        <div class="project-lib-image">
+                            <img src="Dacty2.png" alt="Site de dactylographie React">
+                            <div class="project-lib-overlay">
+                                <i class="fas fa-search-plus"></i>
+                                <span>Voir le projet</span>
+                            </div>
+                        </div>
+                        <div class="project-lib-info">
+                            <div class="project-lib-tags">
+                                <span>React</span>
+                                <span>JavaScript</span>
+                                <span>CSS</span>
+                            </div>
+                            <h3>Site de Dactylographie</h3>
+                            <p>Application React pour s'entraîner à la dactylographie avec une interface moderne et interactive.</p>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -409,7 +429,14 @@
                 <i class="fas fa-times"></i>
             </button>
             <div class="modal-image">
+                <button class="modal-carousel-btn prev" id="modalPrev" type="button" aria-label="Image precedente">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
                 <img id="modalImage" src="" alt="">
+                <button class="modal-carousel-btn next" id="modalNext" type="button" aria-label="Image suivante">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+                <div class="modal-carousel-dots" id="modalCarouselDots"></div>
             </div>
             <div class="modal-body">
                 <div class="modal-tags" id="modalTags"></div>
@@ -417,6 +444,19 @@
                 <div class="modal-description" id="modalDescription"></div>
             </div>
         </div>
+    </div>
+
+    <div class="image-lightbox" id="imageLightbox" aria-hidden="true">
+        <button class="lightbox-close" id="lightboxClose" type="button" aria-label="Fermer l'image agrandie">
+            <i class="fas fa-times"></i>
+        </button>
+        <button class="lightbox-nav prev" id="lightboxPrev" type="button" aria-label="Image precedente en zoom">
+            <i class="fas fa-chevron-left"></i>
+        </button>
+        <img id="lightboxImage" src="" alt="">
+        <button class="lightbox-nav next" id="lightboxNext" type="button" aria-label="Image suivante en zoom">
+            <i class="fas fa-chevron-right"></i>
+        </button>
     </div>
 
     <!-- ===== SECTION CV ===== -->
@@ -519,10 +559,13 @@
         }
 
         // ===== Project Modal =====
+        let currentProjectImages = [];
+        let currentImageIndex = 0;
+
         const projectsData = {
             catalogue: {
                 title: "Catalogue d'Albums de Musique",
-                image: "projet-catalogue.png",
+                images: ["projet-catalogue.png","Cata1.png","Cata2.png","Cata3.png"],
                 tags: ["Java", "Netbeans", "SQLite"],
                 description: `
                     <p>Ce projet consiste à développer une application en <strong>Java avec Netbeans</strong> permettant de gérer une base de données d'albums de musique.</p>
@@ -544,7 +587,7 @@
             },
             editeur_json: {
                 title: "Editeur JSON",
-                image: "EZJSON.png",
+                images: ["EZJSON.png","js1.png","js2.png","js3.png"],
                 tags: ["React", "Webpack", "Projet de groupe", "Approche agile"],
                 description: `
                     <p>Application de chargeur, visualisation et modification de fichiers JSON .</p>
@@ -569,7 +612,7 @@
             },
             site_web: {
                 title: "Site Web de Catalogue de Films et Séries",
-                image: "netflix.png",
+                images: ["netflix.png","net1.png","net2.png","net3.png"],
                 tags: ["HTML/CSS", "JavaScript", "Responsive Design"],
                 description: `
                     <p>Site web interactif de catalogue de films et séries avec recherche, détail et tri des contenus.</p>
@@ -589,16 +632,98 @@
                     <p>HTML/CSS, JavaScript, Responsive Design</p>
                 `
             },
+            dactylographie: {
+                title: "Site de Dactylographie",
+                images: ["Dacty2.png", "Dacti.png", "Dacty3.png"],
+                tags: ["React", "JavaScript", "CSS"],
+                description: `
+                    <p>Ce projet est un site de dactylographie développé en <strong>React</strong> pour améliorer la vitesse et la précision de frappe.</p>
+                    <h4>Fonctionnalités principales</h4>
+                    <ul>
+                        <li>Exercices de frappe progressifs</li>
+                        <li>Suivi de la vitesse (MPM) et de la précision</li>
+                        <li>Interface fluide et responsive</li>
+                        <li>Feedback en temps réel pendant la saisie</li>
+                    </ul>
+                    <h4>Difficulté</h4>
+                    <p>La principale difficulté a été de gérer les mises à jour en temps réel des statistiques (vitesse, précision, erreurs) sans nuire à la fluidité de l'interface, tout en conservant une expérience utilisateur claire et motivante.</p>
+                    <h4>Ce que ça m'a apporté</h4>
+                    <p>Ce projet m'a permis de maîtriser React, la gestion d'état et la création d'interfaces interactives orientées utilisateur.</p>
+                    <h4>Technologies utilisées</h4>
+                    <p>React, JavaScript, CSS</p>
+                `
+            },
         };
+
+        function renderModalImage() {
+            if (!currentProjectImages.length) return;
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = currentProjectImages[currentImageIndex];
+
+            const lightbox = document.getElementById('imageLightbox');
+            if (lightbox.classList.contains('active')) {
+                const lightboxImage = document.getElementById('lightboxImage');
+                lightboxImage.src = modalImage.src;
+                lightboxImage.alt = modalImage.alt;
+            }
+        }
+
+        function renderCarouselDots() {
+            const dotsContainer = document.getElementById('modalCarouselDots');
+            dotsContainer.innerHTML = currentProjectImages
+                .map((_, index) => `<button type="button" class="carousel-dot${index === currentImageIndex ? ' active' : ''}" data-index="${index}" aria-label="Aller a l'image ${index + 1}"></button>`)
+                .join('');
+
+            dotsContainer.querySelectorAll('.carousel-dot').forEach(dot => {
+                dot.addEventListener('click', () => {
+                    currentImageIndex = Number(dot.dataset.index);
+                    renderModalImage();
+                    renderCarouselDots();
+                });
+            });
+        }
+
+        function updateCarouselState() {
+            const modal = document.querySelector('.project-modal');
+            const hasMultipleImages = currentProjectImages.length > 1;
+            modal.classList.toggle('single-image', !hasMultipleImages);
+
+            const lightbox = document.getElementById('imageLightbox');
+            lightbox.classList.toggle('single-image', !hasMultipleImages);
+
+            if (hasMultipleImages) {
+                renderCarouselDots();
+            } else {
+                document.getElementById('modalCarouselDots').innerHTML = '';
+            }
+        }
+
+        function nextModalImage() {
+            if (currentProjectImages.length <= 1) return;
+            currentImageIndex = (currentImageIndex + 1) % currentProjectImages.length;
+            renderModalImage();
+            renderCarouselDots();
+        }
+
+        function prevModalImage() {
+            if (currentProjectImages.length <= 1) return;
+            currentImageIndex = (currentImageIndex - 1 + currentProjectImages.length) % currentProjectImages.length;
+            renderModalImage();
+            renderCarouselDots();
+        }
 
         function openProjectModal(projectId) {
             const data = projectsData[projectId];
             if (!data) return;
             
             document.getElementById('modalTitle').textContent = data.title;
-            document.getElementById('modalImage').src = data.image;
             document.getElementById('modalImage').alt = data.title;
             document.getElementById('modalDescription').innerHTML = data.description;
+
+            currentProjectImages = data.images && data.images.length ? data.images : [data.image];
+            currentImageIndex = 0;
+            renderModalImage();
+            updateCarouselState();
             
             const tagsContainer = document.getElementById('modalTags');
             tagsContainer.innerHTML = data.tags.map(tag => `<span class="modal-tag">${tag}</span>`).join('');
@@ -614,12 +739,88 @@
             document.body.style.overflow = '';
         }
 
+        function openImageLightbox(imageSrc, imageAlt) {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+
+            lightboxImage.src = imageSrc;
+            lightboxImage.alt = imageAlt || 'Image du projet';
+
+            lightbox.classList.add('active');
+            lightbox.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeImageLightbox() {
+            const lightbox = document.getElementById('imageLightbox');
+            const lightboxImage = document.getElementById('lightboxImage');
+
+            lightbox.classList.remove('active');
+            lightbox.setAttribute('aria-hidden', 'true');
+            lightboxImage.src = '';
+
+            const isProjectModalOpen = document.getElementById('projectModal').classList.contains('active');
+            document.body.style.overflow = isProjectModalOpen ? 'hidden' : '';
+        }
+
         document.getElementById('projectModal').addEventListener('click', function(e) {
             if (e.target === this) closeProjectModal();
         });
 
+        document.getElementById('modalImage').addEventListener('click', function() {
+            if (!this.src) return;
+            openImageLightbox(this.src, this.alt);
+        });
+
+        document.getElementById('imageLightbox').addEventListener('click', function(e) {
+            if (e.target === this) closeImageLightbox();
+        });
+
+        document.getElementById('lightboxClose').addEventListener('click', closeImageLightbox);
+        document.getElementById('lightboxNext').addEventListener('click', function(e) {
+            e.stopPropagation();
+            nextModalImage();
+        });
+        document.getElementById('lightboxPrev').addEventListener('click', function(e) {
+            e.stopPropagation();
+            prevModalImage();
+        });
+
+        document.getElementById('modalNext').addEventListener('click', nextModalImage);
+        document.getElementById('modalPrev').addEventListener('click', prevModalImage);
+
         document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape') closeProjectModal();
+            const lightbox = document.getElementById('imageLightbox');
+
+            if (e.key === 'Escape') {
+                if (lightbox.classList.contains('active')) {
+                    closeImageLightbox();
+                    return;
+                }
+                closeProjectModal();
+            }
+
+            if (lightbox.classList.contains('active')) {
+                if (e.key === 'ArrowRight') {
+                    e.preventDefault();
+                    nextModalImage();
+                }
+                if (e.key === 'ArrowLeft') {
+                    e.preventDefault();
+                    prevModalImage();
+                }
+                return;
+            }
+
+            if (!document.getElementById('projectModal').classList.contains('active')) return;
+            if (e.key === 'ArrowRight') {
+                e.preventDefault();
+                nextModalImage();
+            }
+            if (e.key === 'ArrowLeft') {
+                e.preventDefault();
+                prevModalImage();
+            }
         });
 
         // ===== THREE.JS 3D ANIMATED BACKGROUND =====
