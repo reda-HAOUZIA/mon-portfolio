@@ -212,6 +212,17 @@ header nav {
     text-transform: uppercase;
 }
 
+.hero-subtitle {
+    font-size: 1em !important;
+    margin-top: 10px !important;
+    color: var(--accent-secondary) !important;
+    font-style: italic;
+    font-weight: 400 !important;
+    letter-spacing: 1px !important;
+    text-transform: none !important;
+    animation: fadeInUp 1s ease 0.5s both !important;
+}
+
 @keyframes fadeInUp {
     from { opacity: 0; transform: translateY(30px); }
     to { opacity: 1; transform: translateY(0); }
